@@ -9,6 +9,7 @@ LD        := $(MIPS_BINUTILS)/bin/mips64-elf-ld
 OBJCOPY   := $(MIPS_BINUTILS)/bin/mips64-elf-objcopy
 CC        := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc -v
 
+ASFLAGS := -mtune=vr4300 -march=vr4300
 CFLAGS := -mips2 -G 0 -O0 -I $(PROJECT_DIR)include -I include -I ./include
 
 #### Files ####
@@ -43,7 +44,7 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -I binary -O binary $@ $@ --pad-to 0x03600000 --gap-fill=0xFF
 
 $(ELF): $(O_FILES) ldscript.txt
-	$(LD) -T ldscript.txt -Map $(MAP) $(O_FILES) -o $@
+	$(LD) -T ldscript.txt --no-check-sections --accept-unknown-input-arch -Map $(MAP) $(O_FILES) -o $@
 
 clean:
 	$(RM) $(ROM) $(ELF) $(MAP) -r build
@@ -52,11 +53,11 @@ clean:
 #### Various Recipes ####
 
 build/baserom/%.o: baserom/%
-	$(OBJCOPY) -I binary -O elf32-bigmips -B mips $< $@
+	$(OBJCOPY) -I binary -O elf32-big $< $@
 
 # assemble code into object file
 build/asm/%.o: asm/%.s
-	$(AS) $^ -o $@
+	$(AS) $(ASFLAGS) $^ -o $@
 
 build/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@

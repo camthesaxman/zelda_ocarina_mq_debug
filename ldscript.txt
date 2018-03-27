@@ -1,10 +1,14 @@
+MEMORY
+{
+    ROM : ORIGIN = 0, LENGTH = 0x03600000
+}
 
 SECTIONS
 {
-    ROM :
+    makerom 0x80000000 : { build/baserom/makerom.o(.data); } AT>ROM
+    boot    0x80000460 : { build/asm/boot.o(.text);        } AT>ROM
+    other :
     {
-        build/baserom/makerom.o(.data);
-        build/baserom/boot.o(.data);
         build/baserom/dmadata.o(.data);
         build/baserom/Audiobank.o(.data);
         build/baserom/Audioseq.o(.data);
@@ -1543,7 +1547,7 @@ SECTIONS
         . = ALIGN(0x1000); build/baserom/anime_texture_6_static.o(.data);
         . = ALIGN(0x1000); build/baserom/softsprite_matrix_static.o(.data);
         . = ALIGN(0x1000);
-    }
+    } AT>ROM
 
     /* Discard everything not specifically mentioned above. */
     /DISCARD/ : { *(*); }
