@@ -7,10 +7,11 @@ PROJECT_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 AS        := $(MIPS_BINUTILS)/bin/mips64-elf-as
 LD        := $(MIPS_BINUTILS)/bin/mips64-elf-ld
 OBJCOPY   := $(MIPS_BINUTILS)/bin/mips64-elf-objcopy
-CC        := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc -v
+CC        := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 
-ASFLAGS := -mtune=vr4300 -march=vr4300
-CFLAGS := -mips2 -G 0 -O0 -I $(PROJECT_DIR)include -I include -I ./include
+ASFLAGS := -march=vr4300 -32
+CFLAGS := -mips2 -G 0 -O2 -non_shared -Xcpluscomm -I $(PROJECT_DIR)include -I include -I ./include
+
 
 #### Files ####
 
@@ -23,8 +24,10 @@ MAP := $(ROM:.z64=.map)
 include baserom_files.mk
 
 # source code
+C_FILES := $(wildcard src/*.c)
 S_FILES := $(wildcard asm/*.s)
 O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
+	   $(foreach f,$(C_FILES:.c=.o),build/$f) \
            $(foreach f,$(BASEROM_FILES),build/$f.o)
 
 $(shell mkdir -p build/asm)
@@ -55,9 +58,8 @@ clean:
 build/baserom/%.o: baserom/%
 	$(OBJCOPY) -I binary -O elf32-big $< $@
 
-# assemble code into object file
 build/asm/%.o: asm/%.s
 	$(AS) $(ASFLAGS) $^ -o $@
 
-build/%.o: src/%.c
+build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@

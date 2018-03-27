@@ -1,3 +1,5 @@
+INCLUDE undefined_syms.txt
+
 MEMORY
 {
     ROM : ORIGIN = 0, LENGTH = 0x03600000
@@ -6,7 +8,13 @@ MEMORY
 SECTIONS
 {
     makerom 0x80000000 : { build/baserom/makerom.o(.data); } AT>ROM
-    boot    0x80000460 : { build/asm/boot.o(.text);        } AT>ROM
+
+    boot    0x80000460 :
+    {
+        build/src/boot_main.o(.text);
+        build/asm/boot.o(.text);
+    } AT>ROM
+
     other :
     {
         build/baserom/dmadata.o(.data);
