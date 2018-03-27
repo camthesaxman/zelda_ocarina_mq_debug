@@ -1,0 +1,8 @@
+# Build outputs
+build/
+*.elf
+*.map
+*.z64
+
+# Other files we don't want to track
+baserom
