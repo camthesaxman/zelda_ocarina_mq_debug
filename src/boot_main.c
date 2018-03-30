@@ -1,7 +1,7 @@
 #include "../include/ultra64.h"
 
 extern u8 *D_80000318;
-extern u8 D_80016DA0[];
+extern u8 _dmadataSegmentStart[];
 extern u8 D_00016DA0[];
 extern u8 D_80012370[];
 extern u8 D_80012960[];
@@ -9,7 +9,7 @@ extern u8 D_80012D60[];
 extern u8 D_8000AFC0[];
 extern u8 D_8000AFD0[];
 extern u8 D_8000AFE0[];
-extern u8 D_00BCEF30[];
+extern u8 _ovl_titleSegmentRomStart[];
 extern u8 D_80012390[];
 extern u8 D_8000AFC8[];
 extern u8 D_80012540[];
@@ -27,14 +27,14 @@ extern u8 D_8000B058[];
 extern int D_80009450;
 extern u8 D_00A94000[];
 
-extern void func_80004450();
+extern void bzero();
 extern void func_80002660();
 extern void *func_80005100();
-extern u64 func_800069E0();
+extern u64 osGetTime();
 
 void func_80000460(void)
 {
-    func_80004450(D_80016DA0, D_80000318 - D_00016DA0);
+    bzero(_dmadataSegmentStart, D_80000318 - D_00016DA0);
 }
 
 void func_80000498(void)
@@ -52,6 +52,6 @@ void func_80000498(void)
     func_80001E60();
     
     func_80002660(D_80012940, D_80012540, D_80012940_, 0, 256, D_8000AFC8);
-    func_80004550(D_80012390, 1, D_80000694, 0, D_80012940, 10);
-    func_80008FC0(D_80012390);
+    osCreateThread(D_80012390, 1, D_80000694, 0, D_80012940, 10);
+    osStartThread(D_80012390);
 }
