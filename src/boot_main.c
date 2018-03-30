@@ -7,17 +7,30 @@ extern u8 D_80012370[];
 extern u8 D_80012960[];
 extern u8 D_80012D60[];
 extern u8 D_8000AFC0[];
+extern u8 D_8000AFD0[];
+extern u8 D_8000AFE0[];
+extern u8 D_00BCEF30[];
 extern u8 D_80012390[];
 extern u8 D_8000AFC8[];
 extern u8 D_80012540[];
 extern u8 D_80012940[];
 extern u8 D_80012940_[];  // these must be defined separately for the code to match
 extern u8 D_80000694[];
+extern u8 D_8000AFFC[];
+extern u8 D_8000B008[];
+extern u8 D_8001CE60[];
+extern u8 D_80157D90[];
+extern u8 D_801759C0[];
+extern u8 D_8000B028[];
+extern u8 D_8000B038[];
+extern u8 D_8000B058[];
 extern int D_80009450;
+extern u8 D_00A94000[];
 
 extern void func_80004450();
 extern void func_80002660();
 extern void *func_80005100();
+extern u64 func_800069E0();
 
 void func_80000460(void)
 {

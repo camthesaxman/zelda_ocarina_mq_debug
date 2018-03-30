@@ -4,13 +4,17 @@ PROJECT_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 #### Tools ####
 
-AS        := $(MIPS_BINUTILS)/bin/mips64-elf-as
-LD        := $(MIPS_BINUTILS)/bin/mips64-elf-ld
-OBJCOPY   := $(MIPS_BINUTILS)/bin/mips64-elf-objcopy
-CC        := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
+AS         := $(MIPS_BINUTILS)/bin/mips64-elf-as
+LD         := $(MIPS_BINUTILS)/bin/mips64-elf-ld
+OBJCOPY    := $(MIPS_BINUTILS)/bin/mips64-elf-objcopy
+OBJDUMP    := $(MIPS_BINUTILS)/bin/mips64-elf-objdump
+CC         := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
+CPP        := cpp
+MKLDSCRIPT := tools/mkldscript
+ELF2ROM    := tools/elf2rom
 
-ASFLAGS := -march=vr4300 -32
-CFLAGS := -mips2 -G 0 -O2 -non_shared -Xcpluscomm -I $(PROJECT_DIR)include -I include -I ./include
+ASFLAGS := -march=vr4300 -32 -I include
+CFLAGS  := -mips2 -G 0 -O2 -non_shared -Xfullwarn -Xcpluscomm -I $(PROJECT_DIR)include -I include -I ./include
 
 
 #### Files ####
@@ -18,7 +22,10 @@ CFLAGS := -mips2 -G 0 -O2 -non_shared -Xcpluscomm -I $(PROJECT_DIR)include -I in
 # ROM image
 ROM := zelda_ocarina_mq_dbg.z64
 ELF := $(ROM:.z64=.elf)
+# linker map
 MAP := $(ROM:.z64=.map)
+# description of ROM segments
+SPEC := spec
 
 # baserom files
 include baserom_files.mk
@@ -27,7 +34,7 @@ include baserom_files.mk
 C_FILES := $(wildcard src/*.c)
 S_FILES := $(wildcard asm/*.s)
 O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
-	   $(foreach f,$(C_FILES:.c=.o),build/$f) \
+	       $(foreach f,$(C_FILES:.c=.o),build/$f) \
            $(foreach f,$(BASEROM_FILES),build/$f.o)
 
 $(shell mkdir -p build/asm)
@@ -41,13 +48,14 @@ compare: $(ROM)
 	@md5sum -c checksum.md5
 
 $(ROM): $(ELF)
-	$(OBJCOPY) -O binary $< $@
-    # pad to 54 MiB
-    # note that this build does not include the garbage data from the rest of the cartridge dump
-	$(OBJCOPY) -I binary -O binary $@ $@ --pad-to 0x03600000 --gap-fill=0xFF
+	$(ELF2ROM) $< $@
 
-$(ELF): $(O_FILES) ldscript.txt
-	$(LD) -T ldscript.txt --no-check-sections --accept-unknown-input-arch -Map $(MAP) $(O_FILES) -o $@
+$(ELF): $(O_FILES) build/ldscript.txt
+	$(LD) -T undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch -Map $(MAP) -o $@
+
+build/ldscript.txt: $(SPEC)
+	$(CPP) -P $< > build/spec
+	$(MKLDSCRIPT) build/spec $@
 
 clean:
 	$(RM) $(ROM) $(ELF) $(MAP) -r build
@@ -63,3 +71,5 @@ build/asm/%.o: asm/%.s
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
+    # disassemble to aid with decompilation
+	@$(OBJDUMP) -d $@ > $(@:.o=.s)

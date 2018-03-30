@@ -1,0 +1,50 @@
+#include "../include/ultra64.h"
+
+extern u8 *D_80000318;
+extern u8 D_80016DA0[];
+extern u8 D_00016DA0[];
+extern u8 D_80012370[];
+extern u8 D_80012960[];
+extern u8 D_80012D60[];
+extern u8 D_8000AFC0[];
+extern u8 D_8000AFD0[];
+extern u8 D_8000AFE0[];
+extern u8 D_00BCEF30[];
+extern u8 D_80012390[];
+extern u8 D_8000AFC8[];
+extern u8 D_80012540[];
+extern u8 D_80012940[];
+extern u8 D_80012940_[];  // these must be defined separately for the code to match
+extern u8 D_80000694[];
+extern u8 D_8000AFFC[];
+extern u8 D_8000B008[];
+extern u8 D_8001CE60[];
+extern u8 D_80157D90[];
+extern u8 D_801759C0[];
+extern u8 D_8000B028[];
+extern u8 D_8000B038[];
+extern u8 D_8000B058[];
+extern int D_80009450;
+extern u8 D_00A94000[];
+
+extern u64 func_800069E0();
+extern void func_80002130(const char *, ...);
+
+void func_800005A0(void *arg0)
+{
+    s64 var1;
+    u8 *var2;
+
+    func_80002130(D_8000AFD0);
+    func_8000183C();
+    func_80002130(D_8000AFE0);
+    var1 = func_800069E0();
+    func_80001AA0(D_8001CE60, D_00A94000, D_00BCEF30 - D_00A94000, D_8000AFFC, 238);
+    var1 -= func_800069E0();
+    func_80002130(D_8000B008);
+    func_80002130(D_8000B028);
+    func_80004450(D_80157D90, D_801759C0 - D_80157D90);
+    func_80002130(D_8000B038);
+    func_800C6E20(arg0);
+    func_80002130(D_8000B058);
+}
