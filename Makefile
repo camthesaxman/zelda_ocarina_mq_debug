@@ -22,8 +22,6 @@ CFLAGS  := -mips2 -G 0 -O2 -non_shared -Xfullwarn -Xcpluscomm -I $(PROJECT_DIR)i
 # ROM image
 ROM := zelda_ocarina_mq_dbg.z64
 ELF := $(ROM:.z64=.elf)
-# linker map
-MAP := $(ROM:.z64=.map)
 # description of ROM segments
 SPEC := spec
 
@@ -51,14 +49,14 @@ $(ROM): $(ELF)
 	$(ELF2ROM) $< $@
 
 $(ELF): $(O_FILES) build/ldscript.txt
-	$(LD) -T undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch -Map $(MAP) -o $@
+	$(LD) -T undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch -o $@
 
 build/ldscript.txt: $(SPEC)
 	$(CPP) -P $< > build/spec
 	$(MKLDSCRIPT) build/spec $@
 
 clean:
-	$(RM) $(ROM) $(ELF) $(MAP) -r build
+	$(RM) $(ROM) $(ELF) -r build
 
 
 #### Various Recipes ####

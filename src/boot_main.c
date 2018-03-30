@@ -7,7 +7,6 @@ extern u8 D_80012370[];
 extern u8 D_80012960[];
 extern u8 D_80012D60[];
 extern u8 D_8000AFC0[];
-extern u8 D_8000AFD0[];
 extern u8 D_8000AFE0[];
 extern u8 _ovl_titleSegmentRomStart[];
 extern u8 D_80012390[];
@@ -25,7 +24,6 @@ extern u8 D_8000B028[];
 extern u8 D_8000B038[];
 extern u8 D_8000B058[];
 extern int D_80009450;
-extern u8 D_00A94000[];
 
 extern void bzero();
 extern void func_80002660();
@@ -39,7 +37,7 @@ void func_80000460(void)
 
 void func_80000498(void)
 {
-    func_80002660(D_80012370, D_80012960, D_80012D60, 0, -1, D_8000AFC0);
+    func_80002660(D_80012370, D_80012960, D_80012D60, 0, -1, "boot");
 
     D_80000318 = func_80005100();
     func_80000460();
@@ -51,7 +49,7 @@ void func_80000498(void)
     func_80002080();
     func_80001E60();
     
-    func_80002660(D_80012940, D_80012540, D_80012940_, 0, 256, D_8000AFC8);
+    func_80002660(D_80012940, D_80012540, D_80012940_, 0, 256, "idle");
     osCreateThread(D_80012390, 1, D_80000694, 0, D_80012940, 10);
     osStartThread(D_80012390);
 }
