@@ -25,26 +25,26 @@ extern u8 D_8000B028[];
 extern u8 D_8000B038[];
 extern u8 D_8000B058[];
 extern int D_80009450;
-extern u8 D_00A94000[];
+extern u8 _codeSegmentRomStart[];
 
-extern u64 func_800069E0();
-extern void func_80002130(const char *, ...);
+extern u64 osGetTime(void);
+
+void DebugMessage(char *format, ...);
 
 void func_800005A0(void *arg0)
 {
-    s64 var1;
-    u8 *var2;
+    u64 var1;
 
-    func_80002130(D_8000AFD0);
+    DebugMessage(D_8000AFD0);
     func_8000183C();
-    func_80002130(D_8000AFE0);
-    var1 = func_800069E0();
-    func_80001AA0(D_8001CE60, D_00A94000, D_00BCEF30 - D_00A94000, D_8000AFFC, 238);
-    var1 -= func_800069E0();
-    func_80002130(D_8000B008);
-    func_80002130(D_8000B028);
-    func_80004450(D_80157D90, D_801759C0 - D_80157D90);
-    func_80002130(D_8000B038);
+    DebugMessage(D_8000AFE0);
+    var1 = osGetTime();
+    func_80001AA0(D_8001CE60, _codeSegmentRomStart, D_00BCEF30 - _codeSegmentRomStart, D_8000AFFC, 238);
+    var1 -= osGetTime();
+    DebugMessage(D_8000B008);
+    DebugMessage(D_8000B028, var1);
+    bzero(D_80157D90, D_801759C0 - D_80157D90);
+    DebugMessage(D_8000B038);
     func_800C6E20(arg0);
-    func_80002130(D_8000B058);
+    DebugMessage(D_8000B058);
 }
