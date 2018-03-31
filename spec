@@ -100,7 +100,7 @@ endseg
 
 beginseg
     name "dmadata"
-    include "build/baserom/dmadata.o"
+    include "build/asm/dmadata.o"
     address 0x80016DA0
 endseg
 
