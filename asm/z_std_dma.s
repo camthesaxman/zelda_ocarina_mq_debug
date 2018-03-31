@@ -276,7 +276,7 @@ glabel DMARomToRam
 /* 001B60 80000F60 03E00008 */  jr    $ra
 /* 001B64 80000F64 27BD00B0 */   addiu $sp, $sp, 0xb0
 
-func_80000F68:
+glabel func_80000F68
 /* 001B68 80000F68 3C0F8001 */  lui   $t7, %hi(D_80009450) # $t7, 0x8001
 /* 001B6C 80000F6C 8DEF9450 */  lw    $t7, %lo(D_80009450)($t7)
 /* 001B70 80000F70 27BDFFD0 */  addiu $sp, $sp, -0x30
@@ -741,7 +741,7 @@ glabel GetFile
 /* 0021C4 800015C4 03E00008 */  jr    $ra
 /* 0021C8 800015C8 00000000 */   nop   
 
-func_800015CC:
+glabel func_800015CC
 /* 0021CC 800015CC 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 0021D0 800015D0 AFA40038 */  sw    $a0, 0x38($sp)
 /* 0021D4 800015D4 AFBF0024 */  sw    $ra, 0x24($sp)

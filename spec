@@ -37,7 +37,7 @@ beginseg
     include "build/asm/osVirtualToPhysical.o"
     include "build/asm/boot_80004E60.o"
     include "build/asm/boot_80004ED0.o"
-    include "build/asm/osGetThreadId.o"
+    include "build/src/osGetThreadId.o"
     include "build/asm/osSetIntMask.o"
     include "build/asm/boot_80004FE0.o"
     include "build/asm/__osProbeTLB.o"
