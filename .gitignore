@@ -3,7 +3,7 @@ build/
 *.elf
 *.map
 *.z64
-
+*.sra
 # Other files we don't want to track
 baserom
 *.dump
