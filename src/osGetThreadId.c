@@ -1,6 +1,6 @@
-#include <ultra64.h>
+#include "../include/ultra64.h"
 
-#include "global.h"
+#include "../include/global.h"
 
 extern OSThread *D_8000AD50;
 

@@ -14,7 +14,7 @@ MKLDSCRIPT := tools/mkldscript
 ELF2ROM    := tools/elf2rom
 
 ASFLAGS := -march=vr4300 -32 -I include
-CFLAGS  := -mips2 -G 0 -O2 -non_shared -Xfullwarn -Xcpluscomm -I$(PROJECT_DIR)include
+CFLAGS  := -mips2 -G 0 -O2 -non_shared -Xfullwarn -Xcpluscomm
 
 
 #### Files ####
