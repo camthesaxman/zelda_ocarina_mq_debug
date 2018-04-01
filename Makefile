@@ -4,10 +4,10 @@ PROJECT_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 #### Tools ####
 
-AS         := $(MIPS_BINUTILS)/bin/mips64-elf-as
-LD         := $(MIPS_BINUTILS)/bin/mips64-elf-ld
-OBJCOPY    := $(MIPS_BINUTILS)/bin/mips64-elf-objcopy
-OBJDUMP    := $(MIPS_BINUTILS)/bin/mips64-elf-objdump
+AS         := $(MIPS_BINUTILS_PREFIX)as
+LD         := $(MIPS_BINUTILS_PREFIX)ld
+OBJCOPY    := $(MIPS_BINUTILS_PREFIX)objcopy
+OBJDUMP    := $(MIPS_BINUTILS_PREFIX)objdump
 CC         := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 CPP        := cpp
 MKLDSCRIPT := tools/mkldscript
