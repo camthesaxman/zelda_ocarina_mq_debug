@@ -419,8 +419,7 @@ beginseg
     include "build/asm/code_801068B0.o"
     include "build/asm/code_801069B0.o"
     include "build/asm/code_80110990.o"
-    //include "build/asm/code_801120C0.o"
-    include "build/asm/code.o"
+    include "build/asm/code_data.o"
     address 0x8001CE60
 endseg
 
