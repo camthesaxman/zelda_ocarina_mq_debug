@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "opts.h"
+//#include "opts.h"
 #include "util.h"
 
 #define ARRAY_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))

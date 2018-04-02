@@ -1,0 +1,123 @@
+#include "../include/ultra64.h"
+
+extern int* D_80000318;
+extern u8 D_80016DA0[];
+extern u8 D_00016DA0[];
+extern u8 D_80012370[];
+extern u8 D_80012960[];
+extern u8 D_80012D60[];
+extern u8 D_8000AFC0[];
+extern u8 D_8000AFD0[];
+extern u8 D_8000AFE0[];
+extern u8 D_00BCEF30[];
+extern u8 D_80012390[];
+extern u8 D_8000AFC8[];
+extern u8 D_80012540[];
+extern u8 D_80012940[];
+extern u8 D_80012940_[];  // these must be defined separately for the code to match
+extern u8 D_80000694[];
+extern u8 D_8000AFFC[];
+extern u8 D_8000B008[];
+extern u8 D_8001CE60[];
+extern u8 D_80157D90[];
+extern u8 D_801759C0[];
+extern u8 D_8000B028[];
+extern u8 D_8000B038[];
+extern u8 D_8000B058[];
+extern int D_80009450;
+extern u8 _codeSegmentRomStart[];
+
+extern u8 D_8000B068[];
+extern u8 D_8000B08C[];
+extern u8 D_80012340[];
+extern u8 D_8000B09C[];
+extern u8 D_80012350[];
+extern u8 D_8000B0AC[];
+extern u8 D_80012364[];
+extern u8 D_8000B0BC[];
+extern u8 D_8000B0C4[];
+extern u8 D_8000B100[];
+extern u8 D_8000B140[];
+extern u8 D_8000B150[];
+extern u8 D_80012364[];
+extern u8 D_8000B168[];
+extern u8 D_8000B19C[];
+extern u8 D_8000B1CC[];
+extern u8 D_802109E0[];
+extern u8 D_8000B1FC[];
+extern u8 D_801D89E0[];
+extern u8 D_8000B22C[];
+
+extern u8 D_80009434;
+
+//extern u32 D_80000318;
+
+#define osSyncPrintf DebugMessage
+
+
+extern u64 osGetTime(void);
+
+void DebugMessage(char *format, ...);
+
+void func_800005A0(void* arg0)
+{
+    u64 var1;
+    int test = _codeSegmentRomStart;
+
+    osSyncPrintf(D_8000AFD0);
+    func_8000183C();
+    osSyncPrintf(D_8000AFE0);
+    var1 = osGetTime();
+    func_80001AA0(D_8001CE60, test, D_00BCEF30 - _codeSegmentRomStart, D_8000AFFC, 238);
+    var1 -= osGetTime();
+    osSyncPrintf(D_8000B008);
+    osSyncPrintf(D_8000B028);
+    bzero(D_80157D90, D_801759C0 - D_80157D90);
+    osSyncPrintf(D_8000B038);
+    func_800C6E20(arg0);
+    osSyncPrintf(D_8000B058);
+}
+
+/*
+void func_80000694(void* arg0)
+{
+    //u64 var1;
+    //int val = *D_80000318;
+    s32 val = *D_80000318;
+
+    osSyncPrintf(D_8000B068);
+    osSyncPrintf(D_8000B08C, D_80012340);
+    osSyncPrintf(D_8000B09C, D_80012350);
+    osSyncPrintf(D_8000B0AC, D_80012364);
+    osSyncPrintf(D_8000B0BC);
+
+    
+    if (val < 0)
+    {
+        
+        osSyncPrintf(D_8000B0C4, D_80000318);
+        osSyncPrintf(D_8000B100, D_80016DA0);
+        osSyncPrintf(D_8000B140, 0x96);
+        osSyncPrintf(D_8000B168, 0x92);
+        osSyncPrintf(D_8000B19C, 0x60);
+        osSyncPrintf(D_8000B1CC, 3);
+
+        if (D_802109E0 - D_801D89E0 < 0)
+        {
+            osSyncPrintf(D_8000B1FC, 1337);
+
+            osSyncPrintf(D_8000B22C, 1337);
+
+            func_80008CA0(0xFE);
+        }
+    }
+}
+*/
+
+void func_80000B48()
+{
+    if (D_80009434 < 0)
+        func_80004E60(1);
+    else
+        func_80004E60(0);
+}
