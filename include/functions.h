@@ -2278,6 +2278,6 @@ extern void *func_80005100();
 // ? func_800D65B8(?);
 // ? func_800D6DEC(?);
 // ? func_800FBB60(?);
-// ? func_801120C0(?);
+// ? D_801120C0(?);
 
 #endif
