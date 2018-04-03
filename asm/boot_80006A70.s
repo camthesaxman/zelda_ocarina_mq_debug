@@ -165,7 +165,7 @@ glabel func_80006C74
 /* 0078A4 80006CA4 AFB9002C */  sw    $t9, 0x2c($sp)
 /* 0078A8 80006CA8 AFB80028 */  sw    $t8, 0x28($sp)
 .L80006CAC:
-/* 0078AC 80006CAC 0C001CA0 */  jal   func_80007280
+/* 0078AC 80006CAC 0C001CA0 */  jal   __osDisableInt
 /* 0078B0 80006CB0 00000000 */   nop   
 /* 0078B4 80006CB4 0C001BA8 */  jal   osGetCount
 /* 0078B8 80006CB8 AFA2001C */   sw    $v0, 0x1c($sp)
@@ -195,7 +195,7 @@ glabel func_80006C74
 glabel func_80006D14
 /* 007914 80006D14 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 007918 80006D18 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 00791C 80006D1C 0C001CA0 */  jal   func_80007280
+/* 00791C 80006D1C 0C001CA0 */  jal   __osDisableInt
 /* 007920 80006D20 AFA40038 */   sw    $a0, 0x38($sp)
 /* 007924 80006D24 3C0E8001 */  lui   $t6, %hi(D_8000ADF0) # $t6, 0x8001
 /* 007928 80006D28 8DCEADF0 */  lw    $t6, %lo(D_8000ADF0)($t6)

@@ -13,7 +13,7 @@ glabel __osSetGlobalIntMask
 /* 007AB0 80006EB0 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 007AB4 80006EB4 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 007AB8 80006EB8 AFA40028 */  sw    $a0, 0x28($sp)
-/* 007ABC 80006EBC 0C001CA0 */  jal   func_80007280
+/* 007ABC 80006EBC 0C001CA0 */  jal   __osDisableInt
 /* 007AC0 80006EC0 AFB00018 */   sw    $s0, 0x18($sp)
 /* 007AC4 80006EC4 3C0E8001 */  lui   $t6, %hi(D_8000AD00) # $t6, 0x8001
 /* 007AC8 80006EC8 8DCEAD00 */  lw    $t6, %lo(D_8000AD00)($t6)

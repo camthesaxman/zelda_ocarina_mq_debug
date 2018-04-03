@@ -12,7 +12,7 @@
 glabel func_80004FE0
 /* 005BE0 80004FE0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 005BE4 80004FE4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 005BE8 80004FE8 0C001CA0 */  jal   func_80007280
+/* 005BE8 80004FE8 0C001CA0 */  jal   __osDisableInt
 /* 005BEC 80004FEC AFA40018 */   sw    $a0, 0x18($sp)
 /* 005BF0 80004FF0 3C058001 */  lui   $a1, %hi(D_8000AF04) # $a1, 0x8001
 /* 005BF4 80004FF4 24A5AF04 */  addiu $a1, %lo(D_8000AF04) # addiu $a1, $a1, -0x50fc

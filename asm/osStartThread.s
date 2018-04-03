@@ -14,7 +14,7 @@ glabel osStartThread
 /* 009BC4 80008FC4 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 009BC8 80008FC8 AFA40028 */  sw    $a0, 0x28($sp)
 /* 009BCC 80008FCC AFB10018 */  sw    $s1, 0x18($sp)
-/* 009BD0 80008FD0 0C001CA0 */  jal   func_80007280
+/* 009BD0 80008FD0 0C001CA0 */  jal   __osDisableInt
 /* 009BD4 80008FD4 AFB00014 */   sw    $s0, 0x14($sp)
 /* 009BD8 80008FD8 8FAE0028 */  lw    $t6, 0x28($sp)
 /* 009BDC 80008FDC 24010001 */  li    $at, 1

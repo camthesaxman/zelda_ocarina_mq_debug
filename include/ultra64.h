@@ -4,6 +4,7 @@
 #include "stddef.h"
 
 #include "ultra64/types.h"
+#include "ultra64/interrupt.h"
 #include "ultra64/thread.h"
 #include "ultra64/time.h"
 

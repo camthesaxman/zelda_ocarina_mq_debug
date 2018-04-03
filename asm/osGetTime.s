@@ -12,7 +12,7 @@
 glabel osGetTime
 /* 0075E0 800069E0 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 0075E4 800069E4 AFBF001C */  sw    $ra, 0x1c($sp)
-/* 0075E8 800069E8 0C001CA0 */  jal   func_80007280
+/* 0075E8 800069E8 0C001CA0 */  jal   __osDisableInt
 /* 0075EC 800069EC AFB00018 */   sw    $s0, 0x18($sp)
 /* 0075F0 800069F0 0C001BA8 */  jal   osGetCount
 /* 0075F4 800069F4 00408025 */   move  $s0, $v0

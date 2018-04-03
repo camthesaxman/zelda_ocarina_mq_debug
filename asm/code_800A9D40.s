@@ -43,7 +43,7 @@ glabel func_800A9D40
 /* B20F58 800A9DB8 A2080007 */  sb    $t0, 7($s0)
 /* B20F5C 800A9DBC 0C001114 */  jal   bzero
 /* B20F60 800A9DC0 AE090010 */   sw    $t1, 0x10($s0)
-/* B20F64 800A9DC4 0C001CA0 */  jal   func_80007280
+/* B20F64 800A9DC4 0C001CA0 */  jal   __osDisableInt
 /* B20F68 800A9DC8 00000000 */   nop   
 /* B20F6C 800A9DCC 3C038001 */  lui   $v1, %hi(D_8000AD7C) # $v1, 0x8001
 /* B20F70 800A9DD0 2463AD7C */  addiu $v1, %lo(D_8000AD7C) # addiu $v1, $v1, -0x5284

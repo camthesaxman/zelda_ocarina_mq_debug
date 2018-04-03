@@ -13,8 +13,9 @@ CPP        := cpp
 MKLDSCRIPT := tools/mkldscript
 ELF2ROM    := tools/elf2rom
 
+OPTIMIZATION := -O2
 ASFLAGS := -march=vr4300 -32 -I include
-CFLAGS  := -mips2 -G 0 -O2 -non_shared -Xfullwarn -Xcpluscomm
+CFLAGS  := -mips2 -G 0 -non_shared -Xfullwarn -Xcpluscomm
 
 
 #### Files ####
@@ -28,8 +29,11 @@ SPEC := spec
 # baserom files
 include baserom_files.mk
 
+SRC_DIRS := src src/libultra
+ASM_DIRS := asm
+
 # source code
-C_FILES := $(wildcard src/*.c)
+C_FILES := $(wildcard src/*.c) $(wildcard src/libultra/*.c)
 S_FILES := $(wildcard asm/*.s)
 O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
 	       $(foreach f,$(C_FILES:.c=.o),build/$f) \
@@ -38,7 +42,11 @@ O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
 $(shell mkdir -p build/asm)
 $(shell mkdir -p build/baserom)
 $(shell mkdir -p build/src)
+$(shell mkdir -p build/src/libultra)
 
+build/src/libultra/osGetThreadPri.o: OPTIMIZATION := -O1
+build/src/libultra/osSetThreadPri.o: OPTIMIZATION := -O1
+build/src/libultra/osCreateThread.o: OPTIMIZATION := -O1
 
 #### Main Targets ###
 
@@ -68,6 +76,4 @@ build/asm/%.o: asm/%.s
 	$(AS) $(ASFLAGS) $^ -o $@
 
 build/src/%.o: src/%.c
-	$(CC) -c $(CFLAGS) $^ -o $@
-    # disassemble to aid with decompilation
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+	$(CC) -c $(CFLAGS) $(OPTIMIZATION) $^ -o $@

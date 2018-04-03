@@ -73,7 +73,7 @@ extern void func_80002660();
 // ? func_80004114(?);
 // ? func_8000415C(?);
 // ? func_80004174(?);
-// ? func_800042F0(?);
+extern const u8 func_800042F0[];  // return point for thread
 // ? func_80004340(?);
 // ? func_80004740(?);
 // ? func_80004780(?);
@@ -99,7 +99,7 @@ extern void *func_80005100();
 // ? func_80006AFC(?);
 // ? func_80006C74(?);
 // ? func_80006D14(?);
-// ? func_80007280(?);
+int __osDisableInt(void);
 // ? func_800072F0(?);
 // ? func_80007310(?);
 // ? func_80007430(?);

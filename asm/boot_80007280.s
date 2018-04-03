@@ -9,7 +9,7 @@
 
 .align 4
   
-glabel func_80007280
+glabel __osDisableInt
 /* 007E80 80007280 3C0A8001 */  lui   $t2, %hi(D_8000AD00) # $t2, 0x8001
 /* 007E84 80007284 254AAD00 */  addiu $t2, %lo(D_8000AD00) # addiu $t2, $t2, -0x5300
 /* 007E88 80007288 8D4B0000 */  lw    $t3, ($t2)

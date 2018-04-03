@@ -16,7 +16,7 @@ glabel osJamMesg
 /* 006EEC 800062EC AFA5002C */  sw    $a1, 0x2c($sp)
 /* 006EF0 800062F0 AFA60030 */  sw    $a2, 0x30($sp)
 /* 006EF4 800062F4 AFB10018 */  sw    $s1, 0x18($sp)
-/* 006EF8 800062F8 0C001CA0 */  jal   func_80007280
+/* 006EF8 800062F8 0C001CA0 */  jal   __osDisableInt
 /* 006EFC 800062FC AFB00014 */   sw    $s0, 0x14($sp)
 /* 006F00 80006300 8FAE0028 */  lw    $t6, 0x28($sp)
 /* 006F04 80006304 00408025 */  move  $s0, $v0
