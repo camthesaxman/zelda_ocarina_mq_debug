@@ -67,7 +67,7 @@ glabel func_80008CA0
 /* 009968 80008D68 0C00190C */  jal   osSetThreadPri
 /* 00996C 80008D6C AFA20028 */   sw    $v0, 0x28($sp)
 .L80008D70:
-/* 009970 80008D70 0C001CA0 */  jal   func_80007280
+/* 009970 80008D70 0C001CA0 */  jal   __osDisableInt
 /* 009974 80008D74 00000000 */   nop   
 /* 009978 80008D78 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 00997C 80008D7C 3C038001 */  lui   $v1, %hi(D_80016D30) # $v1, 0x8001

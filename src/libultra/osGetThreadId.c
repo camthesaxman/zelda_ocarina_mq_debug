@@ -1,8 +1,6 @@
-#include "../include/ultra64.h"
+#include "../../include/ultra64.h"
 
-#include "../include/global.h"
-
-extern OSThread *D_8000AD50;
+#include "../../include/global.h"
 
 OSId osGetThreadId(OSThread *thread)
 {

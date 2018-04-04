@@ -14,7 +14,7 @@ glabel func_801047B0
 /* B7B954 801047B4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* B7B958 801047B8 AFA40018 */  sw    $a0, 0x18($sp)
 /* B7B95C 801047BC AFA5001C */  sw    $a1, 0x1c($sp)
-/* B7B960 801047C0 0C001CA0 */  jal   func_80007280
+/* B7B960 801047C0 0C001CA0 */  jal   __osDisableInt
 /* B7B964 801047C4 AFA60020 */   sw    $a2, 0x20($sp)
 /* B7B968 801047C8 3C038001 */  lui   $v1, %hi(D_8000AF04) # $v1, 0x8001
 /* B7B96C 801047CC 2463AF04 */  addiu $v1, %lo(D_8000AF04) # addiu $v1, $v1, -0x50fc

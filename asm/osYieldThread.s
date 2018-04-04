@@ -12,7 +12,7 @@
 glabel osYieldThread
 /* 008740 80007B40 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 008744 80007B44 AFBF001C */  sw    $ra, 0x1c($sp)
-/* 008748 80007B48 0C001CA0 */  jal   func_80007280
+/* 008748 80007B48 0C001CA0 */  jal   __osDisableInt
 /* 00874C 80007B4C AFB00018 */   sw    $s0, 0x18($sp)
 /* 008750 80007B50 3C0F8001 */  lui   $t7, %hi(D_8000AD50) # $t7, 0x8001
 /* 008754 80007B54 8DEFAD50 */  lw    $t7, %lo(D_8000AD50)($t7)

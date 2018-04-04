@@ -72,7 +72,7 @@ glabel osSendMesg
 /* 003C70 80003070 AFA60040 */  sw    $a2, 0x40($sp)
 /* 003C74 80003074 AFB20020 */  sw    $s2, 0x20($sp)
 /* 003C78 80003078 AFB1001C */  sw    $s1, 0x1c($sp)
-/* 003C7C 8000307C 0C001CA0 */  jal   func_80007280
+/* 003C7C 8000307C 0C001CA0 */  jal   __osDisableInt
 /* 003C80 80003080 AFB00018 */   sw    $s0, 0x18($sp)
 /* 003C84 80003084 8FAE0038 */  lw    $t6, 0x38($sp)
 /* 003C88 80003088 00408025 */  move  $s0, $v0
@@ -164,7 +164,7 @@ glabel osStopThread
 /* 003DB8 800031B8 AFA40038 */  sw    $a0, 0x38($sp)
 /* 003DBC 800031BC AFB20020 */  sw    $s2, 0x20($sp)
 /* 003DC0 800031C0 AFB1001C */  sw    $s1, 0x1c($sp)
-/* 003DC4 800031C4 0C001CA0 */  jal   func_80007280
+/* 003DC4 800031C4 0C001CA0 */  jal   __osDisableInt
 /* 003DC8 800031C8 AFB00018 */   sw    $s0, 0x18($sp)
 /* 003DCC 800031CC 8FAE0038 */  lw    $t6, 0x38($sp)
 /* 003DD0 800031D0 00408025 */  move  $s0, $v0
@@ -226,7 +226,7 @@ glabel osRecvMesg
 /* 003E8C 8000328C AFA5002C */  sw    $a1, 0x2c($sp)
 /* 003E90 80003290 AFA60030 */  sw    $a2, 0x30($sp)
 /* 003E94 80003294 AFB10018 */  sw    $s1, 0x18($sp)
-/* 003E98 80003298 0C001CA0 */  jal   func_80007280
+/* 003E98 80003298 0C001CA0 */  jal   __osDisableInt
 /* 003E9C 8000329C AFB00014 */   sw    $s0, 0x14($sp)
 /* 003EA0 800032A0 8FAE0028 */  lw    $t6, 0x28($sp)
 /* 003EA4 800032A4 00408025 */  move  $s0, $v0

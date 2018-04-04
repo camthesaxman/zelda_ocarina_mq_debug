@@ -12,7 +12,7 @@
 glabel func_80106760
 /* B7D900 80106760 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* B7D904 80106764 AFBF0014 */  sw    $ra, 0x14($sp)
-/* B7D908 80106768 0C001CA0 */  jal   func_80007280
+/* B7D908 80106768 0C001CA0 */  jal   __osDisableInt
 /* B7D90C 8010676C 00000000 */   nop   
 /* B7D910 80106770 3C0E8001 */  lui   $t6, %hi(D_8000AF00) # $t6, 0x8001
 /* B7D914 80106774 8DCEAF00 */  lw    $t6, %lo(D_8000AF00)($t6)
