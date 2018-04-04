@@ -1,0 +1,22 @@
+#include "../include/ultra64.h"
+#include "../../include/global.h"
+
+// Work in progress
+void func_80002FF0(void* a0)
+{
+    if (!D_8000AC90)
+        func_80002FA0();
+
+    osRecvMessage(&D_800145A8, &a0, 1);
+}
+
+void func_80003034()
+{
+    osSendMesg(&D_800145A8, 0, 0);
+}
+
+void func_80003270(u32 a0)
+{
+    u32* ptr = &D_8000AFBC;
+    *ptr = a0;
+}

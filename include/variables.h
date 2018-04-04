@@ -5246,4 +5246,8 @@ extern u32 D_80015AE8;
 //extern ? D_E7000004;
 //extern ? D_E700000C;
 
+extern u32 D_8000AC90;
+extern u32 D_800145A8;
+extern u32 D_8000AFBC;
+
 #endif
