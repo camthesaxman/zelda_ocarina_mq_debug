@@ -33,20 +33,19 @@ SRC_DIRS := src src/libultra
 ASM_DIRS := asm
 
 # source code
-C_FILES := $(wildcard src/*.c) $(wildcard src/libultra/*.c)
-S_FILES := $(wildcard asm/*.s)
+C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
-	       $(foreach f,$(C_FILES:.c=.o),build/$f) \
+           $(foreach f,$(C_FILES:.c=.o),build/$f) \
            $(foreach f,$(BASEROM_FILES),build/$f.o)
 
-$(shell mkdir -p build/asm)
+# create build directories
 $(shell mkdir -p build/baserom)
-$(shell mkdir -p build/src)
-$(shell mkdir -p build/src/libultra)
+$(foreach dir,$(SRC_DIRS) $(ASM_DIRS),$(shell mkdir -p build/$(dir)))
 
-build/src/libultra/osGetThreadPri.o: OPTIMIZATION := -O1
-build/src/libultra/osSetThreadPri.o: OPTIMIZATION := -O1
-build/src/libultra/osCreateThread.o: OPTIMIZATION := -O1
+build/src/libultra/%.o: OPTIMIZATION := -O1
+#build/src/libultra/osGetTime.o: OPTIMIZATION := -O2
+
 
 #### Main Targets ###
 
