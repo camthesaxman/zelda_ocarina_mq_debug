@@ -12,6 +12,8 @@ CC         := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 CPP        := cpp
 MKLDSCRIPT := tools/mkldscript
 ELF2ROM    := tools/elf2rom
+ZAP        := tools/ZAP/ZAP/bin/Debug/ZAP.exe
+MONO       := mono
 
 OPTIMIZATION := -O2
 ASFLAGS := -march=vr4300 -32 -I include
@@ -31,17 +33,21 @@ include baserom_files.mk
 
 SRC_DIRS := src src/libultra
 ASM_DIRS := asm
+TEXTURE_DIRS = textures
+
 
 # source code
-C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
-O_FILES := $(foreach f,$(S_FILES:.s=.o),build/$f) \
-           $(foreach f,$(C_FILES:.c=.o),build/$f) \
-           $(foreach f,$(BASEROM_FILES),build/$f.o)
+C_FILES       := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+S_FILES       := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+TEXTURE_FILES := $(foreach dir,$(TEXTURE_DIRS),$(wildcard $(dir)/*.xml))
+O_FILES       := $(foreach f,$(S_FILES:.s=.o),build/$f) \
+                 $(foreach f,$(C_FILES:.c=.o),build/$f) \
+                 $(foreach f,$(BASEROM_FILES),build/$f.o) \
+		         $(foreach f,$(TEXTURE_FILES:.xml=.o),build/$f)
 
 # create build directories
 $(shell mkdir -p build/baserom)
-$(foreach dir,$(SRC_DIRS) $(ASM_DIRS),$(shell mkdir -p build/$(dir)))
+$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(TEXTURE_DIRS),$(shell mkdir -p build/$(dir)))
 
 build/src/libultra/%.o: OPTIMIZATION := -O1
 #build/src/libultra/osGetTime.o: OPTIMIZATION := -O2
@@ -76,3 +82,9 @@ build/asm/%.o: asm/%.s
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(OPTIMIZATION) $^ -o $@
+
+build/textures/%.o: textures/%.zdata
+	$(OBJCOPY) -I binary -O elf32-big $< $@
+
+textures/%.zdata: textures/%
+	$(MONO) $(ZAP) $<.xml b

@@ -128,19 +128,22 @@ endseg
 beginseg
     name "icon_item_static"
     romalign 0x1000
-    include "build/baserom/icon_item_static.o"
+    //include "build/baserom/icon_item_static.o"
+    include "build/textures/icon_item_static.o"
 endseg
 
 beginseg
     name "icon_item_24_static"
     romalign 0x1000
-    include "build/baserom/icon_item_24_static.o"
+    //include "build/baserom/icon_item_24_static.o"
+    include "build/textures/icon_item_24_static.o"
 endseg
 
 beginseg
     name "icon_item_field_static"
     romalign 0x1000
-    include "build/baserom/icon_item_field_static.o"
+    //include "build/baserom/icon_item_field_static.o"
+    include "build/textures/icon_item_field_static.o"
 endseg
 
 beginseg
