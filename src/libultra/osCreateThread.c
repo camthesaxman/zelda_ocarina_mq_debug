@@ -1,6 +1,5 @@
-#include "../../include/ultra64.h"
-
-#include "../../include/global.h"
+#include <ultra64.h>
+#include <ultra64/os_internal.h>
 
 void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *), void *arg,
     void *sp, OSPri pri)

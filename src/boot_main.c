@@ -1,6 +1,6 @@
-#include "../include/ultra64.h"
+#include <ultra64.h>
 
-#include "../include/global.h"
+#include "global.h"
 
 void func_80000460(void)
 {

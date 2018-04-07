@@ -1,6 +1,5 @@
-#include "../../include/ultra64.h"
-
-#include "../../include/global.h"
+#include <ultra64.h>
+#include <ultra64/os_internal.h>
 
 u32 osDpGetStatus(void)
 {

@@ -73,7 +73,6 @@ extern void func_80002660();
 // ? func_80004114(?);
 OSThread *func_8000415C();
 // ? func_80004174(?);
-extern const u8 func_800042F0[];  // return point for thread
 // ? func_80004340(?);
 // ? func_80004740(?);
 // ? func_80004780(?);

@@ -1,7 +1,5 @@
-#include "../../include/ultra64.h"
-#include "../../include/ultra64/os_internal.h"
-
-#include "../../include/global.h"
+#include <ultra64.h>
+#include <ultra64/os_internal.h>
 
 OSTime osGetTime(void)
 {

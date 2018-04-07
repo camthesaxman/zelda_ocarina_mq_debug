@@ -17,7 +17,7 @@ MONO       := mono
 
 OPTIMIZATION := -O2
 ASFLAGS := -march=vr4300 -32 -I include
-CFLAGS  := -mips2 -G 0 -non_shared -Xfullwarn -Xcpluscomm
+CFLAGS  := -mips2 -G 0 -non_shared -Xfullwarn -Xcpluscomm -I include
 
 
 #### Files ####

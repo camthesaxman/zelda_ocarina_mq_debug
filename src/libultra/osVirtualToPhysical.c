@@ -1,5 +1,5 @@
-#include "../../include/ultra64.h"
-#include "../../include/ultra64/os_internal.h"
+#include <ultra64.h>
+#include <ultra64/os_internal.h>
 
 u32 osVirtualToPhysical(void *vaddr)
 {
