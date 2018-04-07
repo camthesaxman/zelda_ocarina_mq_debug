@@ -3,14 +3,14 @@
         <Texture Name="World_Map" Format="ci8" Width="216" Height="128"/>
 		<Texture Name="World_Map_Palette" Format="rgb5a1" Width="16" Height="16"/>
 		<Texture Name="World_Map_Dot" Format="ia8" Width="8" Height="8"/>
-		<Texture Name="Kakariko_Village-Market Box" Format="ia4" Width="32" Height="19"/>
-		<Texture Name="Kokiri_Forest-Lake Hylia Box" Format="ia4" Width="48" Height="38"/>
+		<Texture Name="Kakariko_Village-Market_Box" Format="ia4" Width="32" Height="19"/>
+		<Texture Name="Kokiri_Forest-Lake_Hylia_Box" Format="ia4" Width="48" Height="38"/>
 		<Texture Name="Goron_City" Format="ia4" Width="32" Height="17"/>
 		<Texture Name="Death_Mountain_Crater_Box" Format="ia4" Width="32" Height="13"/>
 		<Texture Name="Death_Mountain_Trial" Format="ia4" Width="32" Height="26"/>
-		<Texture Name="Zoras+_River_Box" Format="ia4" Width="48" Height="19"/>
+		<Texture Name="Zoras_River_Box" Format="ia4" Width="48" Height="19"/>
 		<Texture Name="Hyrule_Field_Box" Format="ia4" Width="96" Height="59"/>
-		<Texture Name="Lost_Woods_Haunted_Wasteland - Q Box" Format="ia4" Width="16" Height="16"/>
+		<Texture Name="Lost_Woods_Haunted_Wasteland_QBox" Format="ia4" Width="16" Height="16"/>
 		<Texture Name="World_Map_Arrow" Format="ia8" Width="8" Height="8"/>
 		<Texture Name="Lake_Hylia_Cloud" Format="i4" Width="64" Height="60"/>
 		<Texture Name="Desert_Colossus_Cloud" Format="i4" Width="48" Height="45"/>

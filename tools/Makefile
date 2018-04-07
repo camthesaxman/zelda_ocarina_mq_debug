@@ -4,7 +4,7 @@ XBUILD := xbuild
 PROGRAMS := yaz0 makeromfs elf2rom mkldscript
 PROGRAMS_CS := ZAP.exe
 
-all: $(PROGRAMS) $(PROGRAMS_CS) ZAP.exe
+all: $(PROGRAMS) $(PROGRAMS_CS)
 
 #TODO: Clean this up
 ZAP.exe:
