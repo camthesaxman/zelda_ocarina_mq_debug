@@ -215,7 +215,7 @@ extern int D_80009450;
 //extern ? D_8000AE50;
 //extern ? D_8000AEA0;
 //extern ? D_8000AED0;
-//extern ? D_8000AF00;
+extern u32* D_8000AF00;
 //extern ? D_8000AF04;
 //extern ? D_8000AF10;
 //extern ? D_8000AF20;
