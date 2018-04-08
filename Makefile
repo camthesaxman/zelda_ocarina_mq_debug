@@ -82,6 +82,7 @@ build/asm/%.o: asm/%.s
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(OPTIMIZATION) $^ -o $@
+	#@$(OBJDUMP) -d $@ > $(@:.o=.s)
 
 build/textures/%.o: textures/%.zdata
 	$(OBJCOPY) -I binary -O elf32-big $< $@

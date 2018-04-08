@@ -341,7 +341,7 @@ beginseg
     include "build/asm/code_800CA7D0.o"
     include "build/asm/code_800D05F0.o"
     include "build/asm/code_800D0810.o"
-    include "build/asm/code_800D2DF0.o"
+    include "build/src/code_800D2DF0.o"
     include "build/asm/code_800D2E30.o"
     include "build/asm/code_800D31A0.o"
     include "build/asm/code_800D3220.o"
