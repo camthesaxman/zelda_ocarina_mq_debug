@@ -10,5 +10,6 @@
 #include <ultra64/rdp.h>
 #include <ultra64/thread.h>
 #include <ultra64/time.h>
+#include <ultra64/message.h>
 
 #endif

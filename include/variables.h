@@ -194,7 +194,6 @@ extern int D_80009450;
 //extern ? D_8000AC70;
 //extern ? D_8000AC80;
 //extern ? D_8000AC84;
-//extern ? D_8000AC90;
 //extern ? D_8000ACA0;
 //extern ? D_8000ACF0;
 //extern ? D_8000ACF4;
@@ -223,7 +222,7 @@ extern int D_80009450;
 //extern ? D_8000AF70;
 //extern ? D_8000AF84;
 //extern ? D_8000AFA0;
-//extern ? D_8000AFBC;
+extern u32 D_8000AFBC;
 //extern ? D_8000AFD0;
 //extern ? D_8000AFE0;
 //extern ? D_8000AFFC;
@@ -385,8 +384,6 @@ extern u8 D_80012D60[];
 //extern ? D_80014510;
 //extern ? D_80014520;
 //extern ? D_80014534;
-//extern ? D_800145A0;
-//extern ? D_800145A8;
 //extern ? D_800145C0;
 //extern ? D_800145D4;
 //extern ? D_800145D5;
@@ -5240,9 +5237,5 @@ extern u8 D_80012D60[];
 //extern ? D_DA38000C;
 //extern ? D_E7000004;
 //extern ? D_E700000C;
-
-extern u32 D_8000AC90;
-extern u32 D_800145A8;
-extern u32 D_8000AFBC;
 
 #endif

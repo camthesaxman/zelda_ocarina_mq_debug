@@ -8,10 +8,13 @@
 
 extern const u8 func_800042F0[];  // return point for thread
 
+extern u32 D_8000AC90;
 extern OSThread *D_8000AD48;
 extern OSThread *D_8000AD4C;
 extern OSThread *D_8000AD50;
 
+extern OSMesg D_800145A0;
+extern OSMesgQueue D_800145A8;
 extern u64 D_80015AE0;
 extern u32 D_80015AE8;
 
@@ -20,5 +23,6 @@ extern u32 D_80015AE8;
 
 u32 __osProbeTLB(void *);
 u32 __osDisableInt(void);
+OSThread *func_8000415C();
 
 #endif

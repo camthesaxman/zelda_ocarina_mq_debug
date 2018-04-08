@@ -52,5 +52,6 @@ typedef struct OSThread_s
 OSId osGetThreadId(OSThread *thread);
 OSPri osGetThreadPri(OSThread *thread);
 void osStartThread(OSThread *thread);
+void osStopThread(OSThread *thread);
 
 #endif
