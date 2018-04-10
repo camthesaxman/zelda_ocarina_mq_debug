@@ -53,7 +53,7 @@ beginseg
     include "build/asm/boot_800060B0.o"
     include "build/asm/boot_800060F0.o"
     include "build/asm/osInvalICache.o"
-    include "build/asm/osCreateMesgQueue.o"
+    include "build/src/libultra/osCreateMesgQueue.o"
     include "build/asm/osInvalDCache.o"
     include "build/asm/boot_800062B0.o"
     include "build/asm/osJamMesg.o"

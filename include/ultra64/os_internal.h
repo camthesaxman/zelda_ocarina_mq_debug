@@ -9,6 +9,7 @@
 extern const u8 func_800042F0[];  // return point for thread
 
 extern u32 D_8000AC90;
+extern OSThread D_8000AD40[];
 extern OSThread *D_8000AD48;
 extern OSThread *D_8000AD4C;
 extern OSThread *D_8000AD50;
