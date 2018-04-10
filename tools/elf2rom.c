@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "elf32.h"
+#include "n64chksum.h"
 #include "util.h"
 
 #define ROM_SEG_START_SUFFIX ".rom_start"
@@ -23,6 +24,14 @@ struct RomSegment
 static struct RomSegment *g_romSegments = NULL;
 static int g_romSegmentsCount = 0;
 static int g_romSize;
+
+static bool parse_number(const char *str, int *num)
+{
+    char *endptr;
+    long int n = strtol(str, &endptr, 0);
+    *num = n;
+    return endptr > str;
+}
 
 static unsigned int round_up(unsigned int num, unsigned int multiple)
 {
@@ -154,11 +163,12 @@ static void parse_input_file(const char *filename)
 }
 
 // Writes the N64 ROM, padding the file size to a multiple of 1 MiB
-static void write_rom_file(const char *filename)
+static void write_rom_file(const char *filename, int cicType)
 {
     size_t fileSize = round_up(g_romSize, 0x100000);
     uint8_t *buffer = calloc(fileSize, 1);
     int i;
+    uint32_t chksum[2];
 
     // write segments
     for (i = 0; i < g_romSegmentsCount; i++)
@@ -172,6 +182,12 @@ static void write_rom_file(const char *filename)
     for (i = g_romSize; i < fileSize; i++)
         buffer[i] = 0xFF;
 
+    // write checksum
+    if (!n64chksum_calculate(buffer, cicType, chksum))
+        util_fatal_error("invalid cic type %i", cicType);
+    util_write_uint32_be(buffer + 0x10, chksum[0]);
+    util_write_uint32_be(buffer + 0x14, chksum[1]);
+
     util_write_whole_file(filename, buffer, fileSize);
     free(buffer);
 }
@@ -183,14 +199,69 @@ static void usage(const char *execname)
 
 int main(int argc, char **argv)
 {
-    if (argc != 3)
+    int i;
+    const char *inputFileName = NULL;
+    const char *outputFileName = NULL;
+    int cicType = -1;
+
+    for (i = 1; i < argc; i++)
     {
-        usage(argv[0]);
-        return 1;
+        if (argv[i][0] == '-')
+        {
+            if (strcmp(argv[i], "-cic") == 0)
+            {
+                i++;
+                if (i >= argc || !parse_number(argv[i], &cicType))
+                {
+                    fputs("error: expected number after -cic\n", stderr);
+                    goto bad_args;
+                }
+            }
+            else if (strcmp(argv[i], "-help") == 0)
+            {
+                usage(argv[0]);
+                return 0;
+            }
+            else
+            {
+                fprintf(stderr, "unknown option %s\n", argv[i]);
+                goto bad_args;
+            }
+        }
+        else
+        {
+            if (inputFileName == NULL)
+                inputFileName = argv[i];
+            else if (outputFileName == NULL)
+                outputFileName = argv[i];
+            else
+            {
+                fputs("error: too many parameters specified\n", stderr);
+                goto bad_args;
+            }
+        }
+    }
+    if (inputFileName == NULL)
+    {
+        fputs("error: no input file specified\n", stderr);
+        goto bad_args;
+    }
+    if (outputFileName == NULL)
+    {
+        fputs("error: no output file specified\n", stderr);
+        goto bad_args;
+    }
+    if (cicType == -1)
+    {
+        fputs("error: no CIC type specified\n", stderr);
+        goto bad_args;
     }
 
-    parse_input_file(argv[1]);
-    write_rom_file(argv[2]);
-
+    parse_input_file(inputFileName);
+    write_rom_file(outputFileName, cicType);
     return 0;
+
+bad_args:
+    usage(argv[0]);
+    return 1;
 }

@@ -50,7 +50,6 @@ $(shell mkdir -p build/baserom)
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(TEXTURE_DIRS),$(shell mkdir -p build/$(dir)))
 
 build/src/libultra/%.o: OPTIMIZATION := -O1
-#build/src/libultra/osGetTime.o: OPTIMIZATION := -O2
 
 
 #### Main Targets ###
@@ -59,7 +58,7 @@ compare: $(ROM)
 	@md5sum -c checksum.md5
 
 $(ROM): $(ELF)
-	$(ELF2ROM) $< $@
+	$(ELF2ROM) -cic 6105 $< $@
 
 $(ELF): $(O_FILES) build/ldscript.txt
 	$(LD) -T undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch -o $@
