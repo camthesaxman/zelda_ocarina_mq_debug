@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -9,7 +10,7 @@
 
 #define ROL(i, b) (((i) << (b)) | ((i) >> (32 - (b))))
 
-void n64chksum_calculate(const uint8_t *romData, int cicType, uint32_t *chksum)
+bool n64chksum_calculate(const uint8_t *romData, int cicType, uint32_t *chksum)
 {
     unsigned int seed;
     unsigned int t1, t2, t3, t4, t5, t6;
@@ -35,8 +36,7 @@ void n64chksum_calculate(const uint8_t *romData, int cicType, uint32_t *chksum)
         seed = 0x1FEA617A;
         break;
     default:
-        assert(0);  // unknown CIC type
-        break;
+        return false;  // unknown CIC type
     }
 
     t1 = t2 = t3 = t4 = t5 = t6 = seed;
@@ -80,4 +80,6 @@ void n64chksum_calculate(const uint8_t *romData, int cicType, uint32_t *chksum)
         chksum[0] = t6 ^ t4 ^ t3;
         chksum[1] = t5 ^ t2 ^ t1;
     }
+
+    return true;
 }

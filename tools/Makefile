@@ -14,7 +14,7 @@ clean:
 	$(RM) $(PROGRAMS)
 
 mkldscript_SOURCES := mkldscript.c util.c
-elf2rom_SOURCES    := elf2rom.c elf32.c util.c
+elf2rom_SOURCES    := elf2rom.c elf32.c n64chksum.c util.c
 yaz0_SOURCES       := yaz0tool.c yaz0.c util.c
 makeromfs_SOURCES  := makeromfs.c n64chksum.c util.c
 
