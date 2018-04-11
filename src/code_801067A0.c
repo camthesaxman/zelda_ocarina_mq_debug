@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include <global.h>
 
+// Note: This is part of libultra
+
 s32 func_801067A0(u32 a0)
 {
     register u32 spStatus;
