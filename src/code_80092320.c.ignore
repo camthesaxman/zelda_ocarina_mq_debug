@@ -1,5 +1,4 @@
 #include <ultra64.h>
-#include <ultra64/os_internal.h>
 #include <global.h>
 
 // Note: This belongs to z_player_lib.c, should be moved later
