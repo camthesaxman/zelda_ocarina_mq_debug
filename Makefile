@@ -31,7 +31,7 @@ SPEC := spec
 # baserom files
 include baserom_files.mk
 
-SRC_DIRS := src src/libultra
+SRC_DIRS := src src/libultra src/libultra_code
 ASM_DIRS := asm
 TEXTURE_DIRS = textures
 
@@ -81,7 +81,7 @@ build/asm/%.o: asm/%.s
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(OPTIMIZATION) $^ -o $@
-	#@$(OBJDUMP) -d $@ > $(@:.o=.s)
+#	@$(OBJDUMP) -d $@ > $(@:.o=.s)
 
 build/textures/%.o: textures/%.zdata
 	$(OBJCOPY) -I binary -O elf32-big $< $@
