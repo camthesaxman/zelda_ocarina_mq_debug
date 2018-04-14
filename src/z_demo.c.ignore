@@ -1,0 +1,16 @@
+#include <ultra64.h>
+#include <global.h>
+
+void func_8006450C(u32 a0, u8* a1)
+{
+    float* a1_f = (float*)a1;
+
+    a1[8] = 0;
+    a1_f[0x0C / 4] = 0;
+}
+
+void func_80064534(u32 a0, u8* a1)
+{
+    if (a1[8] != 4)
+        a1[8] = 3;
+}
